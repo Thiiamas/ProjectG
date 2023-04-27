@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -11,9 +12,9 @@ public class Projectile : MonoBehaviour
     public Vector2 moveDirection;
     CodeEnemy code;
 
+    
 
 
-    //Observer
 
 
     // Start is called before the first frame update
@@ -21,6 +22,8 @@ public class Projectile : MonoBehaviour
     {
         code = target.GetComponent<CodeEnemy>();
         Subscribe();
+
+        Destroy(gameObject, 5);
     }
 
     private void Update()
@@ -35,6 +38,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    //Observer
     public void Subscribe()
     {
         code.eventHandler += OnTargetDead;
